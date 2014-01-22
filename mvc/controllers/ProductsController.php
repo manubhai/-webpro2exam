@@ -1,11 +1,18 @@
 <?php
-require_once(dirname(__FILE__) . '/../models/Product.php');
+class productscontroller extends maincontroller{
 
-class ProductsController {
-
-    public function indexAction() {
-        $products = Product::all();
-        require_once(dirname(__FILE__) . '/../views/products/index.php');
+    function __construct() {
+   
     }
 
+    public function all() {
+        $sql = 'SELECT * FROM `products` ORDER BY `id` ASC';
+        require_once 'mvc/modles/mysql.php';
+        $mysql = new mysql();
+        $resuly = $mysql->query($sql);
+        require 'mvc/views/products/index.php';
+    }
 }
+
+
+?>
